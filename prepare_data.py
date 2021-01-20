@@ -4,12 +4,6 @@ from sklearn.model_selection import train_test_split
 
 import os
 
-file_folder = "./data/"
-files = ["Fake.csv","True.csv"]
-
-main_data = []
-
-
 def load_data(file_name):
 
     if os.path.exists(file_name):
@@ -30,14 +24,22 @@ def load_data(file_name):
     else:
         print("Datei", file_name ,"nicht gefunden") 
 
-for element in files:
-    file_name = file_folder+element
-    main_data += (load_data(file_name))
+def main():
+    file_folder = "./data/"
+    files = ["Fake.csv","True.csv"]
 
-print("Es gibt insgesamt", len(main_data), "Einträge")
+    main_data = []
 
-random.shuffle(main_data)
-train_data,test_data = train_test_split(main_data,test_size=0.2) 
+    for element in files:
+        file_name = file_folder+element
+        main_data += (load_data(file_name))
 
-print("Länge train_data:", len(train_data)," und Länge test_data:", len(test_data))
-print(train_data[0][3])
+    print("Es gibt insgesamt", len(main_data), "Einträge")
+
+    random.shuffle(main_data)
+    train_data,test_data = train_test_split(main_data,test_size=0.2) 
+
+    print("Länge train_data:", len(train_data)," und Länge test_data:", len(test_data))
+    #print(train_data[0][3])
+
+    return train_data,test_data
